@@ -279,6 +279,8 @@ function locEnd(node) {
     loc = node.range[1];
   } else if (typeof node.end === "number") {
     loc = node.end;
+  } else if (node.loc && node.loc.end && node.loc.end.offset) {
+    loc = node.loc.end.offset;
   } else if (node.source) {
     loc = lineColumnToIndex(node.source.end, node.source.input.css);
   }
