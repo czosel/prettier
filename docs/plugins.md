@@ -157,7 +157,20 @@ If you don't want to switch to a different parser, simply return `null` or `unde
 
 ### `options`
 
-`options` is an object containing the custom options your plugin supports.
+`options` is an object containing the custom options your plugin supports. Each option can be configured as follows:
+
+* `type` specifies the data type of it's value:
+  * `int` (Integer). You can limit the allowed values like this: `range: { start: -1, end: Infinity, step: 1 }`
+  * `boolean` (`true` or `false`)
+  * `path` (filesystem path)
+  * `choice` (a set of values). Specify the possible choices like this:
+```js
+choices: [
+  { value: "flow", description: "Flow" },
+  { value: "babylon", description: "JavaScript" },
+  { value: "typescript", description: "TypeScript" }
+]
+```
 
 Example:
 
@@ -176,7 +189,7 @@ options: {
 
 If your plugin requires different default values for some of prettier's core options, you can specify them in `defaultOptions`:
 
-```
+```js
 defaultOptions: {
   tabWidth: 4
 }
